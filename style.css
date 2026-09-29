@@ -1,0 +1,429 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 50% 0%, #30205c 0%, #0b0913 35%, #050507 75%);
+    color: white;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 10px;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #8c5cff,
+        0 0 50px #8c5cff;
+}
+
+body > p,
+.container > p {
+    text-align: center;
+    color: #cfcfcf;
+}
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+#formulario {
+    margin-top: 35px;
+}
+
+#formulario label {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #343445;
+    background: #151520;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;
+}
+
+select:hover {
+    border-color: #8c5cff;
+    box-shadow: 0 0 15px #8c5cff55;
+}
+
+select:focus {
+    border-color: #b58cff;
+    box-shadow: 0 0 20px #8c5cff88;
+}
+
+
+/* =========================
+   BOTÃO
+========================= */
+
+button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #6b35ff,
+        #b35cff,
+        #6b35ff
+    );
+
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px #8c5cff,
+        0 0 35px #6b35ff66;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.02);
+
+    box-shadow:
+        0 0 20px #b58cff,
+        0 0 50px #8c5cff;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   RESULTADO
+========================= */
+
+#resultado {
+    position: relative;
+
+    margin-top: 60px;
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #211638 0%,
+            #100d18 45%,
+            #08080b 100%
+        );
+
+    border: 2px solid #5f3aa8;
+    border-radius: 20px;
+
+    overflow: visible;
+
+    box-shadow:
+        0 0 25px #6b35ff55,
+        inset 0 0 40px #000;
+}
+
+#resultado h2 {
+    font-size: 28px;
+    letter-spacing: 5px;
+}
+
+#aura {
+    font-size: 80px;
+    font-weight: bold;
+
+    margin: 15px 0;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 30px #b58cff,
+        0 0 60px #8c5cff;
+}
+
+#nivel {
+    font-size: 35px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 10px currentColor,
+        0 0 30px currentColor;
+}
+
+
+/* =========================
+   BETA
+========================= */
+
+#resultado.aura-beta {
+    border-color: #4d8dff;
+}
+
+#resultado.aura-beta #nivel {
+    color: #6fa3ff;
+}
+
+
+/* =========================
+   ALFA
+========================= */
+
+#resultado.aura-alfa {
+    border-color: #ff9d00;
+
+    box-shadow:
+        0 0 30px #ff9d00,
+        0 0 70px #ff660066;
+}
+
+#resultado.aura-alfa #nivel {
+    color: #ffb300;
+}
+
+
+/* =========================
+   MOGGER
+========================= */
+
+#resultado.aura-mogger {
+    border-color: #ff3bff;
+
+    box-shadow:
+        0 0 30px #ff3bff,
+        0 0 80px #8c00ff88;
+}
+
+#resultado.aura-mogger #nivel {
+    color: #ff4dff;
+}
+
+
+/* =========================
+   MOGGER SUPREMO
+========================= */
+
+#resultado.aura-mogger-supremo {
+    border-color: #00eaff;
+
+    box-shadow:
+        0 0 30px #00eaff,
+        0 0 80px #0066ff99,
+        inset 0 0 40px #00eaff22;
+}
+
+#resultado.aura-mogger-supremo #nivel {
+    color: #00eaff;
+}
+
+
+/* =========================
+   CHAD
+========================= */
+
+#resultado.aura-chad {
+    border-color: white;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff22,
+            #351b50 25%,
+            #08080b 70%
+        );
+
+    box-shadow:
+        0 0 30px white,
+        0 0 70px #ffcc00,
+        0 0 120px #ff00ff,
+        inset 0 0 70px #ffffff22;
+}
+
+#resultado.aura-chad #aura {
+    color: white;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 30px #ffcc00,
+        0 0 60px #ff00ff,
+        0 0 100px #00eaff;
+}
+
+#resultado.aura-chad #nivel {
+    color: white;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 30px #ffcc00,
+        0 0 60px #ff00ff;
+}
+
+
+/* =========================
+   CARREGAMENTO (SUSPENSE)
+========================= */
+
+[hidden] {
+    display: none !important;
+}
+
+#carregando {
+    margin-top: 60px;
+    padding: 45px 30px;
+    text-align: center;
+    background: radial-gradient(circle, #1b1230 0%, #0b0913 100%);
+    border: 2px solid #5f3aa8;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #6b35ff55, inset 0 0 40px #000;
+}
+
+.orbe {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, #b58cff 30%, #6b35ff 60%, transparent 72%);
+    box-shadow: 0 0 40px #8c5cff, 0 0 90px #6b35ff88;
+    animation: pulsar 1.2s ease-in-out infinite;
+}
+
+.orbe::after {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #ff4dff;
+    border-bottom-color: #4d8dff;
+    animation: girar 1s linear infinite;
+}
+
+#carregando.intenso .orbe {
+    animation-duration: 0.35s;
+    box-shadow: 0 0 60px #fff, 0 0 130px #ff4dff;
+}
+
+#carregando.intenso .orbe::after {
+    animation-duration: 0.4s;
+}
+
+@keyframes pulsar {
+    0%, 100% { transform: scale(0.85); }
+    50%      { transform: scale(1.15); }
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+#carregando-texto {
+    min-height: 1.5em;
+    font-size: 20px;
+    color: #e2d4ff;
+    text-shadow: 0 0 12px #8c5cff;
+}
+
+.barra {
+    height: 14px;
+    max-width: 480px;
+    margin: 20px auto;
+    overflow: hidden;
+    background: #151520;
+    border: 2px solid #343445;
+    border-radius: 10px;
+}
+
+#barra-progresso {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #6b35ff, #ff4dff, #00eaff);
+    box-shadow: 0 0 15px #b35cff;
+}
+
+#carregando-numero {
+    margin: 0;
+    font-size: 48px;
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    color: #b58cff;
+    text-shadow: 0 0 20px #8c5cff;
+    opacity: 0.8;
+}
+
+
+/* =========================
+   EXPLOSÃO (canvas + flash)
+========================= */
+
+#explosao {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+#flash {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 998;
+}
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+    transform: none;
+    filter: saturate(0.6);
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 12px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    #aura {
+        font-size: 55px;
+    }
+
+    #nivel {
+        font-size: 25px;
+    }
+
+}
