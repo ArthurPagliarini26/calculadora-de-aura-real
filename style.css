@@ -10,6 +10,7 @@ body {
     color: white;
     min-height: 100vh;
     padding: 40px 20px;
+    overflow-x: hidden;
 }
 
 .container {
@@ -153,6 +154,7 @@ button:active {
 }
 
 #aura {
+    overflow-wrap: anywhere;
     font-size: 80px;
     font-weight: bold;
 
@@ -405,6 +407,381 @@ button:disabled {
 
 
 /* =========================
+   TELAS
+========================= */
+
+.tela {
+    animation: entrar 0.45s ease both;
+}
+
+@keyframes entrar {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.cartao {
+    margin-top: 25px;
+    padding: 35px 30px;
+    background: radial-gradient(circle, #1b1230 0%, #0b0913 100%);
+    border: 2px solid #5f3aa8;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #6b35ff55, inset 0 0 40px #000;
+}
+
+.cartao.entrando {
+    animation: entrar 0.4s ease both;
+}
+
+.cartao h2 {
+    margin: 0 0 10px;
+    font-size: 26px;
+    line-height: 1.35;
+    text-shadow: 0 0 14px #8c5cff88;
+}
+
+.centro {
+    text-align: center;
+}
+
+.centro p {
+    color: #cfcfcf;
+}
+
+
+/* =========================
+   INTRODUÇÃO
+========================= */
+
+#tela-intro {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.orbe-grande {
+    width: 150px;
+    height: 150px;
+    margin: 35px auto 30px;
+}
+
+.chamada {
+    margin: 0;
+    font-size: 44px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white !important;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 30px #b58cff,
+        0 0 60px #8c5cff;
+}
+
+.subchamada {
+    margin: 18px 0 35px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #cfcfcf;
+}
+
+#tela-intro button {
+    max-width: 420px;
+}
+
+
+/* =========================
+   PERGUNTAS
+========================= */
+
+.contador {
+    margin: 30px 0 0;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #b58cff;
+    text-shadow: 0 0 12px #8c5cff;
+}
+
+#tela-pergunta .barra {
+    max-width: none;
+    height: 12px;
+    margin: 12px 0 0;
+}
+
+#barra-quiz {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #6b35ff, #ff4dff, #00eaff);
+    box-shadow: 0 0 15px #b35cff;
+    transition: width 0.4s ease;
+}
+
+.lista-opcoes {
+    margin-top: 20px;
+}
+
+button.opcao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 16px 18px;
+
+    border: 2px solid #343445;
+    border-radius: 12px;
+    background: #151520;
+
+    color: white;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.4;
+    text-align: left;
+
+    box-shadow: none;
+    transition: 0.2s;
+}
+
+button.opcao:hover {
+    transform: translateX(4px);
+    border-color: #8c5cff;
+    background: #1a1530;
+    box-shadow: 0 0 15px #8c5cff55;
+}
+
+button.opcao:active {
+    transform: scale(0.99);
+}
+
+button.opcao .letra {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b35ff, #b35cff);
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 0 12px #8c5cff88;
+}
+
+button.opcao.escolhida {
+    border-color: #b58cff;
+    background: #261b4d;
+    box-shadow: 0 0 25px #8c5cffaa;
+    transform: none;
+}
+
+.lista-opcoes.travada button.opcao {
+    pointer-events: none;
+}
+
+.lista-opcoes.travada button.opcao:not(.escolhida) {
+    opacity: 0.4;
+}
+
+
+/* =========================
+   TELA FINAL
+========================= */
+
+#tela-final #formulario {
+    margin-top: 0;
+}
+
+#tela-final > .cartao:first-child {
+    margin-top: 35px;
+}
+
+#discordo {
+    margin-top: 40px;
+}
+
+#discordo label {
+    display: block;
+    margin: 18px 0 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px;
+    border-radius: 10px;
+    border: 2px solid #343445;
+    background: #151520;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    transition: 0.2s;
+}
+
+input[type="text"]::placeholder {
+    color: #55556a;
+    font-weight: normal;
+}
+
+input[type="text"]:hover {
+    border-color: #8c5cff;
+    box-shadow: 0 0 15px #8c5cff55;
+}
+
+input[type="text"]:focus {
+    border-color: #b58cff;
+    box-shadow: 0 0 20px #8c5cff88;
+}
+
+input[type="text"]:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+#erro-aura {
+    min-height: 1.4em;
+    margin: 12px 0 0;
+    color: #ff7a9c !important;
+}
+
+button.secundario {
+    margin-top: 15px;
+    padding: 14px;
+    background: transparent;
+    border: 2px solid #5f3aa8;
+    font-size: 16px;
+    box-shadow: none;
+}
+
+button.secundario:hover {
+    background: #1b1230;
+    box-shadow: 0 0 20px #8c5cff66;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #00eaff;
+    outline-offset: 3px;
+}
+
+/* Resultado quando a aura digitada é 67 */
+#resultado.aura-67 {
+    animation: arco-iris-borda 0.8s linear infinite;
+}
+
+@keyframes arco-iris-borda {
+    0%   { border-color: #ff3b3b; box-shadow: 0 0 40px #ff3b3b, 0 0 90px #ff3b3b88; }
+    25%  { border-color: #ffee00; box-shadow: 0 0 40px #ffee00, 0 0 90px #ffee0088; }
+    50%  { border-color: #3bff7c; box-shadow: 0 0 40px #3bff7c, 0 0 90px #3bff7c88; }
+    75%  { border-color: #00eaff; box-shadow: 0 0 40px #00eaff, 0 0 90px #00eaff88; }
+    100% { border-color: #ff3bff; box-shadow: 0 0 40px #ff3bff, 0 0 90px #ff3bff88; }
+}
+
+
+/* =========================
+   ESPECIAL 67
+========================= */
+
+#meme67 {
+    position: fixed;
+    inset: 0;
+    z-index: 997;
+    pointer-events: none;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: radial-gradient(circle, transparent 25%, #000000aa 100%);
+}
+
+#meme67 .numeros {
+    display: flex;
+    gap: 2vw;
+    font-size: min(48vw, 440px);
+    font-weight: 900;
+    line-height: 1;
+}
+
+#meme67 .n6,
+#meme67 .n7 {
+    color: white;
+    text-shadow:
+        0 0 20px #fff,
+        0 0 60px #ff00ff,
+        0 0 120px #00eaff;
+    animation:
+        gangorra 0.45s ease-in-out infinite alternate,
+        matiz 0.7s linear infinite;
+}
+
+#meme67 .n7 {
+    animation-direction: alternate-reverse, normal;
+}
+
+#meme67.ativo .numeros {
+    animation: aparecer-67 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+#meme67 .legenda {
+    margin-top: -2vh;
+    font-size: min(10vw, 80px);
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    color: white;
+    text-shadow:
+        0 0 15px #fff,
+        0 0 40px #ffee00,
+        0 0 80px #ff3b3b;
+    animation: matiz 0.5s linear infinite, tremida 0.12s linear infinite;
+}
+
+#meme67 .chuva {
+    position: absolute;
+    top: 0;
+    will-change: transform;
+}
+
+@keyframes gangorra {
+    from { transform: translateY(-14vh) rotate(-8deg); }
+    to   { transform: translateY(14vh) rotate(8deg); }
+}
+
+@keyframes matiz {
+    from { filter: hue-rotate(0deg); }
+    to   { filter: hue-rotate(360deg); }
+}
+
+@keyframes aparecer-67 {
+    from { transform: scale(0) rotate(-180deg); opacity: 0; }
+    to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes tremida {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-5px, 3px); }
+    50%  { transform: translate(4px, -4px); }
+    75%  { transform: translate(-3px, -3px); }
+    100% { transform: translate(0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tela,
+    .cartao.entrando,
+    #meme67 .n6,
+    #meme67 .n7,
+    #meme67 .legenda,
+    #meme67.ativo .numeros,
+    #resultado.aura-67 {
+        animation: none;
+    }
+}
+
+
+/* =========================
    RESPONSIVO
 ========================= */
 
@@ -424,6 +801,31 @@ button:disabled {
 
     #nivel {
         font-size: 25px;
+    }
+
+    .cartao {
+        padding: 25px 18px;
+    }
+
+    .cartao h2 {
+        font-size: 21px;
+    }
+
+    .chamada {
+        font-size: 32px;
+    }
+
+    .subchamada {
+        font-size: 16px;
+    }
+
+    button.opcao {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    #aura {
+        overflow-wrap: anywhere;
     }
 
 }

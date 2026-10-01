@@ -3,12 +3,113 @@
 // =========================
 
 const DURACAO_SUSPENSE = 5000; // 5 segundos de carregamento
+const QTD_PERGUNTAS = 7;       // quantas perguntas saem em cada rodada
+const DELAY_PROXIMA = 450;     // pausa (ms) entre escolher uma opção e ir pra próxima
 
-const quesitos = [
-    "presenca", "confianca", "aparencia", "postura", "olhar",
-    "voz", "comunicacao", "humor", "autenticidade", "calma",
-    "competencia", "reputacao", "misterio", "respeito", "independencia",
-    "atitude", "disciplina", "sociabilidade", "estilo", "experiencia"
+// Banco de perguntas. "certa" é o índice da opção que sobe a aura (0=A, 1=B, 2=C, 3=D).
+// Tem 10 perguntas e cada rodada sorteia QTD_PERGUNTAS delas.
+// Para usar todas as 10, basta mudar QTD_PERGUNTAS para 10.
+const perguntas = [
+    {
+        texto: "Você vê um gato preso no topo de uma árvore. O que você faz?",
+        opcoes: [
+            "Chamo os bombeiros e fico esperando",
+            "Tento subir para salvar o gato e provavelmente viro a segunda vítima",
+            "Gravo um vídeo porque aparentemente isso é conteúdo",
+            "Vou embora. O gato chegou lá sozinho, ele que se vire"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você acorda e descobre que ganhou R$ 10 milhões, mas tem uma condição: um desconhecido vai receber R$ 1 milhão por sua causa. O que você faz?",
+        opcoes: [
+            "Aceito na hora, capitalismo venceu",
+            "Tento descobrir quem é o desconhecido",
+            "Recuso porque parece golpe",
+            "Aceito e começo a procurar o desconhecido depois"
+        ],
+        certa: 0
+    },
+    {
+        texto: "Um fantasma aparece no seu quarto às 3 da manhã e diz: “Precisamos conversar”. O que você responde?",
+        opcoes: [
+            "“Pode falar”",
+            "“Você paga aluguel?”",
+            "“Irmão, amanhã eu trabalho”",
+            "Saio correndo e deixo o quarto para ele"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Você encontra uma mochila abandonada no meio da rua. Dentro dela tem R$ 50 mil e um bilhete escrito: “Não pergunte de onde veio”. O que você faz?",
+        opcoes: [
+            "Entrego para a polícia",
+            "Pego o dinheiro e finjo que nunca vi a mochila",
+            "Procuro descobrir de quem é",
+            "Leio o bilhete de novo e penso: “Bom argumento”"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Se você pudesse apagar uma coisa da existência humana, o que escolheria?",
+        opcoes: [
+            "Segunda-feira",
+            "Impostos",
+            "Gente que manda áudio de 7 minutos",
+            "A própria humanidade. Resolvido de uma vez"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Você está em um jantar e percebe que a pessoa ao seu lado está morta, mas ninguém mais percebeu. O que você faz?",
+        opcoes: [
+            "Aviso alguém imediatamente",
+            "Fico em silêncio para não estragar o jantar",
+            "Primeiro termino minha comida, depois resolvo",
+            "Começo a conversar com ela para confirmar"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Um gênio aparece e oferece realizar qualquer desejo, mas existe 10% de chance de dar completamente errado. O que você pede?",
+        opcoes: [
+            "Dinheiro",
+            "Poder ou influência",
+            "Algo completamente absurdo só pela experiência",
+            "Nada. Já vi filmes suficientes para saber onde isso termina"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você está andando sozinho à noite e vê uma pessoa idêntica a você parada do outro lado da rua. O que você faz?",
+        opcoes: [
+            "Vou embora correndo e finjo que nunca vi",
+            "Atravesso a rua para descobrir o que está acontecendo",
+            "Grito “quem é você?” porque aparentemente sou protagonista de filme de terror",
+            "Tiro uma foto. Se eu morrer, pelo menos deixo evidências"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você ganha o poder de saber exatamente quando qualquer pessoa vai morrer, mas não pode impedir. O que você faria?",
+        opcoes: [
+            "Usaria para ajudar as pessoas a aproveitarem melhor o tempo",
+            "Não contaria para ninguém, eu não quero esse peso",
+            "Ficaria paranoico tentando entender o que fazer com essa informação",
+            "Usaria para descobrir quanto tempo ainda tenho antes de começar a me preocupar"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Um pombo pousa na sua cabeça, olha diretamente nos seus olhos e fala: “Você tem 24 horas”. O que você faz?",
+        opcoes: [
+            "Entro em pânico imediatamente",
+            "Pergunto “24 horas para quê?”",
+            "Aceito meu destino e vou comer alguma coisa boa",
+            "Sigo o pombo. Claramente ele sabe mais do que eu"
+        ],
+        certa: 2
+    }
 ];
 
 const mensagensSuspense = [
@@ -71,8 +172,25 @@ const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").m
 // ELEMENTOS
 // =========================
 
+const telaIntro = document.getElementById("tela-intro");
+const telaPergunta = document.getElementById("tela-pergunta");
+const telaFinal = document.getElementById("tela-final");
+
+const botaoComecar = document.getElementById("comecar");
+const numeroPergunta = document.getElementById("numero-pergunta");
+const barraQuiz = document.getElementById("barra-quiz");
+const cartaoPergunta = document.getElementById("cartao-pergunta");
+const textoPergunta = document.getElementById("texto-pergunta");
+const listaOpcoes = document.getElementById("lista-opcoes");
+
+const finalIntro = document.getElementById("final-intro");
 const formulario = document.getElementById("formulario");
-const botao = formulario.querySelector("button[type='submit']");
+const botao = document.getElementById("calcular");
+const botaoRefazer = document.getElementById("refazer");
+const discordo = document.getElementById("discordo");
+const inputAura = document.getElementById("aura-real");
+const erroAura = document.getElementById("erro-aura");
+
 const carregando = document.getElementById("carregando");
 const textoCarregando = document.getElementById("carregando-texto");
 const barra = document.getElementById("barra-progresso");
@@ -84,27 +202,190 @@ const container = document.querySelector(".container");
 const flash = document.getElementById("flash");
 const canvas = document.getElementById("explosao");
 const ctx = canvas.getContext("2d");
+const meme67 = document.getElementById("meme67");
 
 let calculando = false;
+let jaCalculou = false;
+
+
+// =========================
+// TELAS
+// =========================
+
+function mostrarTela(tela) {
+    for (let t of [telaIntro, telaPergunta, telaFinal]) {
+        t.hidden = (t !== tela);
+    }
+    window.scrollTo({ top: 0, behavior: "auto" });
+}
+
+
+// =========================
+// QUIZ
+// =========================
+
+let sorteadas = [];
+let atual = 0;
+let acertos = 0;
+let travado = false;
+
+function embaralhar(lista) {
+    const copia = lista.slice();
+    for (let i = copia.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copia[i], copia[j]] = [copia[j], copia[i]];
+    }
+    return copia;
+}
+
+function comecarQuiz() {
+    sorteadas = embaralhar(perguntas).slice(0, Math.min(QTD_PERGUNTAS, perguntas.length));
+    atual = 0;
+    acertos = 0;
+    travado = false;
+    resetarFinal();
+    mostrarTela(telaPergunta);
+    mostrarPergunta();
+}
+
+function mostrarPergunta() {
+    const p = sorteadas[atual];
+
+    numeroPergunta.textContent = `Pergunta ${atual + 1} de ${sorteadas.length}`;
+    barraQuiz.style.width = ((atual / sorteadas.length) * 100) + "%";
+    textoPergunta.textContent = p.texto;
+
+    listaOpcoes.innerHTML = "";
+    listaOpcoes.classList.remove("travada");
+
+    p.opcoes.forEach((texto, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "opcao";
+
+        const letra = document.createElement("span");
+        letra.className = "letra";
+        letra.textContent = "ABCD"[i];
+
+        const conteudo = document.createElement("span");
+        conteudo.className = "texto";
+        conteudo.textContent = texto;
+
+        b.append(letra, conteudo);
+        b.addEventListener("click", () => responder(i, b));
+        listaOpcoes.appendChild(b);
+    });
+
+    // Reinicia a animação de entrada do cartão
+    cartaoPergunta.classList.remove("entrando");
+    void cartaoPergunta.offsetWidth;
+    cartaoPergunta.classList.add("entrando");
+}
+
+function responder(indice, botaoEscolhido) {
+    if (travado) return;
+    travado = true;
+
+    const p = sorteadas[atual];
+
+    botaoEscolhido.classList.add("escolhida");
+    listaOpcoes.classList.add("travada");
+
+    // Cada pergunta certa sobe o nível de aura em um
+    if (indice === p.certa) acertos++;
+
+    barraQuiz.style.width = (((atual + 1) / sorteadas.length) * 100) + "%";
+
+    setTimeout(() => {
+        atual++;
+
+        if (atual >= sorteadas.length) {
+            irParaFinal();
+        } else {
+            mostrarPergunta();
+        }
+
+        travado = false;
+    }, DELAY_PROXIMA);
+}
+
+// Atalho de teclado: A, B, C, D (ou 1 a 4) escolhem a opção
+document.addEventListener("keydown", function (event) {
+    if (telaPergunta.hidden || travado) return;
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+    const mapa = { a: 0, b: 1, c: 2, d: 3, "1": 0, "2": 1, "3": 2, "4": 3 };
+    const indice = mapa[event.key.toLowerCase()];
+
+    if (indice === undefined) return;
+
+    const opcao = listaOpcoes.children[indice];
+    if (opcao) opcao.click();
+});
+
+function irParaFinal() {
+    mostrarTela(telaFinal);
+}
+
+function resetarFinal() {
+    jaCalculou = false;
+    calculando = false;
+
+    finalIntro.hidden = false;
+    carregando.hidden = true;
+    resultado.hidden = true;
+    discordo.hidden = true;
+    botaoRefazer.hidden = true;
+
+    inputAura.value = "";
+    inputAura.disabled = false;
+    erroAura.textContent = "";
+
+    botao.disabled = false;
+    botao.textContent = "CALCULAR AURA";
+}
 
 
 // =========================
 // CÁLCULO
 // =========================
 
-function calcularAura() {
-    let total = 0;
-
-    for (let quesito of quesitos) {
-        let opcao = formulario.elements[quesito];
-        total += Number(opcao.value);
-    }
-
-    return total / quesitos.length;
+// Cada acerto sobe um nível. O número da aura fica dentro da faixa do nível.
+function auraDoQuiz() {
+    const aura = acertos * 10 + aleatorio(0.1, 9.9);
+    return Number(aura.toFixed(1));
 }
 
 function descobrirNivel(aura) {
     return niveis.find(n => aura < n.ate);
+}
+
+// Lê a aura digitada. Retorna null se for inválida (e mostra o erro).
+function lerAuraDigitada() {
+    const texto = inputAura.value.trim().replace(",", ".");
+
+    if (texto === "") {
+        erroAura.textContent = "Digite a sua aura real primeiro.";
+        inputAura.focus();
+        return null;
+    }
+
+    const numero = Number(texto);
+
+    if (!Number.isFinite(numero)) {
+        erroAura.textContent = "Isso não é uma aura válida. Digite um número.";
+        inputAura.focus();
+        return null;
+    }
+
+    if (Math.abs(numero) > 1000000000) {
+        erroAura.textContent = "Nem a aura mais insana passa de 1.000.000.000.";
+        inputAura.focus();
+        return null;
+    }
+
+    erroAura.textContent = "";
+    return numero;
 }
 
 
@@ -296,6 +577,13 @@ function desenhar() {
     }
 }
 
+function iniciarDesenho() {
+    if (!animando) {
+        animando = true;
+        requestAnimationFrame(desenhar);
+    }
+}
+
 function tremer(intensidade) {
     if (!intensidade || reduzirMovimento) return;
 
@@ -337,13 +625,110 @@ function explodir(nivel) {
     for (let onda = 0; onda < nivel.ondas; onda++) {
         setTimeout(() => {
             emitir(x, y, nivel, 1 + onda * 0.15);
-            if (!animando) {
-                animando = true;
-                requestAnimationFrame(desenhar);
-            }
+            iniciarDesenho();
             if (onda > 0) tremer(nivel.tremor * 0.6);
         }, onda * 180);
     }
+}
+
+
+// =========================
+// ESPECIAL: 67 (meme)
+// =========================
+
+const emojisMeme = ["6️⃣", "7️⃣", "🗿", "🔥", "✨", "💀", "🤯", "🫨"];
+const coresFlashMeme = ["#ff00ff", "#00eaff", "#ffee00", "#ff3b3b", "#7cff3b", "#ffffff"];
+
+// Explosão usada nas rajadas do 67: versão do CHAD com menos partículas para não travar
+const nivelMeme = Object.assign({}, niveis[niveis.length - 1], {
+    particulas: 220, ondas: 1, aneis: 3, tremor: 0, flash: 0
+});
+
+function chuvaDeEmojis(quantidade) {
+    for (let i = 0; i < quantidade; i++) {
+        const e = document.createElement("span");
+        e.className = "chuva";
+        e.textContent = emojisMeme[Math.floor(Math.random() * emojisMeme.length)];
+        e.style.left = aleatorio(0, 96) + "vw";
+        e.style.fontSize = aleatorio(28, 84) + "px";
+        meme67.appendChild(e);
+
+        const animacao = e.animate([
+            { transform: "translateY(-15vh) rotate(0deg)" },
+            { transform: `translateY(115vh) rotate(${aleatorio(-720, 720)}deg)` }
+        ], {
+            duration: aleatorio(1800, 3400),
+            delay: aleatorio(0, 900),
+            easing: "linear",
+            fill: "backwards"
+        });
+
+        animacao.onfinish = () => e.remove();
+    }
+}
+
+function efeito67() {
+    const duracao = reduzirMovimento ? 1800 : 5200;
+
+    meme67.hidden = false;
+    meme67.classList.remove("ativo");
+    void meme67.offsetWidth;
+    meme67.classList.add("ativo");
+
+    if (reduzirMovimento) {
+        setTimeout(() => { meme67.hidden = true; }, duracao);
+        return;
+    }
+
+    // Balança para a esquerda, depois para a direita, depois esquerda...
+    const quadros = [{ transform: "translateX(0) rotate(0deg)" }];
+    const balancos = Math.round(duracao / 330);
+
+    for (let i = 0; i < balancos; i++) {
+        quadros.push({
+            transform: i % 2 === 0
+                ? "translateX(-90px) rotate(-7deg)"
+                : "translateX(90px) rotate(7deg)",
+            easing: "ease-in-out"
+        });
+    }
+    quadros.push({ transform: "translateX(0) rotate(0deg)" });
+
+    container.animate(quadros, { duration: duracao, easing: "ease-in-out" });
+
+    // Cores enlouquecendo
+    container.animate([
+        { filter: "hue-rotate(0deg) saturate(1.6)" },
+        { filter: "hue-rotate(360deg) saturate(2.6)" }
+    ], { duration: 1100, iterations: Math.ceil(duracao / 1100) });
+
+    // Chuva de emojis, em levas
+    chuvaDeEmojis(60);
+    setTimeout(() => chuvaDeEmojis(50), 1500);
+    setTimeout(() => chuvaDeEmojis(50), 3000);
+
+    // Rajadas de explosão e flashes coloridos
+    const intervaloExplosao = setInterval(() => {
+        emitir(
+            aleatorio(window.innerWidth * 0.1, window.innerWidth * 0.9),
+            aleatorio(window.innerHeight * 0.1, window.innerHeight * 0.9),
+            nivelMeme,
+            1
+        );
+        iniciarDesenho();
+    }, 320);
+
+    const intervaloFlash = setInterval(() => {
+        piscar(0.35, coresFlashMeme[Math.floor(Math.random() * coresFlashMeme.length)]);
+    }, 240);
+
+    setTimeout(() => {
+        clearInterval(intervaloExplosao);
+        clearInterval(intervaloFlash);
+        meme67.hidden = true;
+        meme67.classList.remove("ativo");
+        meme67.querySelectorAll(".chuva").forEach(e => e.remove());
+    }, duracao);
 }
 
 
@@ -367,13 +752,14 @@ function contarAte(alvo, duracao) {
     requestAnimationFrame(quadro);
 }
 
-function revelar(aura) {
+function revelar(aura, digitada) {
     const nivel = descobrirNivel(aura);
+    const eh67 = digitada && aura === 67;
 
     carregando.hidden = true;
 
-    resultado.className = nivel.classe;
-    elNivel.textContent = nivel.nome;
+    resultado.className = nivel.classe + (eh67 ? " aura-67" : "");
+    elNivel.textContent = eh67 ? nivel.nome + " 🗿 6-7" : nivel.nome;
     elAura.textContent = "0.0";
     resultado.hidden = false;
 
@@ -383,32 +769,61 @@ function revelar(aura) {
     requestAnimationFrame(() => {
         explodir(nivel);
         contarAte(aura, reduzirMovimento ? 1 : 1200);
+
+        if (eh67) {
+            setTimeout(efeito67, 700);
+        }
     });
 }
 
 
 // =========================
-// ENVIO DO FORMULÁRIO
+// EVENTOS
 // =========================
+
+botaoComecar.addEventListener("click", comecarQuiz);
+botaoRefazer.addEventListener("click", comecarQuiz);
+
+inputAura.addEventListener("input", function () {
+    erroAura.textContent = "";
+});
 
 formulario.addEventListener("submit", async function (event) {
 
     event.preventDefault();
 
     if (calculando) return;
+
+    // Primeira vez: usa o resultado do quiz. Depois: usa a aura digitada.
+    let aura;
+    const digitada = jaCalculou;
+
+    if (digitada) {
+        aura = lerAuraDigitada();
+        if (aura === null) return;
+    } else {
+        aura = auraDoQuiz();
+    }
+
     calculando = true;
 
     botao.disabled = true;
     botao.textContent = "CALCULANDO...";
+    inputAura.disabled = true;
+    botaoRefazer.hidden = true;
     resultado.hidden = true;
-
-    const aura = calcularAura();
+    finalIntro.hidden = true;
 
     await suspense();
 
-    revelar(aura);
+    revelar(aura, digitada);
+
+    jaCalculou = true;
+    discordo.hidden = false;
+    botaoRefazer.hidden = false;
 
     botao.disabled = false;
     botao.textContent = "CALCULAR AURA";
+    inputAura.disabled = false;
     calculando = false;
 });
