@@ -3,12 +3,11 @@
 // =========================
 
 const DURACAO_SUSPENSE = 5000; // 5 segundos de carregamento
-const QTD_PERGUNTAS = 7;       // quantas perguntas saem em cada rodada
+const QTD_PERGUNTAS = 10;      // quantas perguntas saem em cada rodada
 const DELAY_PROXIMA = 450;     // pausa (ms) entre escolher uma opção e ir pra próxima
 
 // Banco de perguntas. "certa" é o índice da opção que sobe a aura (0=A, 1=B, 2=C, 3=D).
-// Tem 10 perguntas e cada rodada sorteia QTD_PERGUNTAS delas.
-// Para usar todas as 10, basta mudar QTD_PERGUNTAS para 10.
+// Tem 30 perguntas e cada rodada sorteia QTD_PERGUNTAS delas.
 const perguntas = [
     {
         texto: "Você vê um gato preso no topo de uma árvore. O que você faz?",
@@ -109,6 +108,206 @@ const perguntas = [
             "Sigo o pombo. Claramente ele sabe mais do que eu"
         ],
         certa: 2
+    },
+    {
+        texto: "Você entra num elevador e todo mundo lá dentro olha para você ao mesmo tempo, em silêncio. O que você faz?",
+        opcoes: [
+            "Peço desculpa e saio",
+            "Aperto o botão do andar como se nada tivesse acontecido",
+            "Pergunto “perdi alguma reunião?”",
+            "Encaro de volta até alguém desviar"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Você descobre que a sua sombra anda sozinha quando você não está olhando. O que você faz?",
+        opcoes: [
+            "Mudo de casa",
+            "Tento negociar: ela faz as tarefas, eu fico com a luz",
+            "Finjo que não vi. Ela também finge",
+            "Pergunto aonde ela vai de madrugada"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Um desconhecido te entrega um envelope e diz: “Só abra daqui a 10 anos”. O que você faz?",
+        opcoes: [
+            "Abro na hora, não tenho paciência",
+            "Guardo e marco no calendário",
+            "Jogo fora, ninguém me dá ordens",
+            "Devolvo o envelope e digo: “Abre você”"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você acorda e todas as pessoas do mundo sumiram, menos você e um papagaio que fala. O que você faz?",
+        opcoes: [
+            "Saio procurando outros sobreviventes",
+            "Pergunto ao papagaio o que ele sabe",
+            "Aproveito para ir ao mercado sem fila",
+            "Fico com medo do papagaio"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Você ganha um dia inteiro em que todo mundo faz tudo o que você mandar. Qual é o primeiro pedido?",
+        opcoes: [
+            "Que todos me deem um aumento",
+            "Que todos fiquem em silêncio por uma hora",
+            "Que todos me chamem de “senhor” sem explicar o motivo",
+            "Que me deixem em paz o dia inteiro"
+        ],
+        certa: 2
+    },
+    {
+        texto: "O Wi-Fi cai bem na hora da partida mais importante da sua vida. O que você faz?",
+        opcoes: [
+            "Reinicio o roteador desesperado",
+            "Culpo o vizinho",
+            "Aceito que o universo decidiu assim",
+            "Troco de operadora ali mesmo, ao vivo"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Um espelho no meio da floresta mostra você daqui a 10 anos, sorrindo e segurando uma pá suja de terra. O que você faz?",
+        opcoes: [
+            "Saio correndo",
+            "Pergunto ao espelho o que eu enterrei",
+            "Prefiro não saber e viro o espelho",
+            "Começo a cavar, quero ver no que dá"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Você está num avião e o piloto avisa pelo alto-falante: “Alguém aí sabe pilotar?”. O que você faz?",
+        opcoes: [
+            "Levanto a mão com confiança, mesmo sem saber pilotar",
+            "Finjo que estou dormindo",
+            "Procuro o manual de instruções",
+            "Peço para ele repetir só para ter certeza de que não é pegadinha"
+        ],
+        certa: 0
+    },
+    {
+        texto: "Você descobre que seu melhor amigo é, na verdade, três crianças dentro de um sobretudo. O que você faz?",
+        opcoes: [
+            "Finjo que não sei e continuo a amizade",
+            "Confronto na hora",
+            "Peço para a de cima sair do meio para eu falar com a de baixo",
+            "Pergunto quem está cuidando do financeiro"
+        ],
+        certa: 0
+    },
+    {
+        texto: "Você ouve passos no corredor às 3 da manhã, mas mora sozinho. O que você faz?",
+        opcoes: [
+            "Fico imóvel e prendo a respiração",
+            "Pego o chinelo mais próximo e vou investigar",
+            "Falo alto: “Pode levar o que quiser, só não faz barulho”",
+            "Digo “boa noite” e volto a dormir"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você abre a geladeira às 2 da manhã e ouve uma voz lá dentro dizendo: “Fecha, está tendo uma reunião”. O que você faz?",
+        opcoes: [
+            "Fecho e peço desculpa",
+            "Pergunto se tem pauta",
+            "Pego o que eu queria e fecho com educação",
+            "Entro, também quero participar"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Você descobre que a sua cidade inteira é um reality show e você é o único que não sabia. O que você faz?",
+        opcoes: [
+            "Saio procurando as câmeras",
+            "Peço uma porcentagem dos lucros",
+            "Continuo vivendo normal só para atrapalhar o roteiro",
+            "Tento convencer os outros a sair"
+        ],
+        certa: 1
+    },
+    {
+        texto: "O dono de um restaurante chique entrega a conta e diz: “Aqui cada refeição custa uma lembrança”. O que você paga?",
+        opcoes: [
+            "A lembrança mais chata da escola",
+            "Uma segunda-feira qualquer",
+            "Saio sem pagar e finjo que atendi o celular",
+            "Pergunto se aceita Pix"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você recebe uma mensagem de você mesmo, do futuro: “Não vá ao churrasco de domingo”. O que você faz?",
+        opcoes: [
+            "Não vou, confio em mim",
+            "Vou com um plano de fuga",
+            "Vou mesmo assim, quero ver o que acontece",
+            "Vou, mas só para comer e ignorar todo mundo"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Você ganha um superpoder inútil: conversar com micro-ondas. Qual é a primeira pergunta?",
+        opcoes: [
+            "Quanto tempo falta?",
+            "Você prefere esquentar ou descongelar?",
+            "Quem esqueceu o garfo aí dentro da última vez?",
+            "Nenhuma. Respeito a privacidade dele"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você está numa fila enorme quando alguém corta na sua frente com a maior naturalidade. O que você faz?",
+        opcoes: [
+            "Reclamo em voz alta",
+            "Fico quieto e anoto mentalmente",
+            "Cumprimento a pessoa como se fosse uma velha conhecida",
+            "Passo na frente dela também"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Um alienígena pousa na sua frente e pede: “Leve-me ao seu líder”. O que você faz?",
+        opcoes: [
+            "Levo ao prefeito",
+            "Levo ao síndico do prédio",
+            "Digo que o líder está de férias",
+            "Me ofereço como líder"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você acorda sem memória, mas com uma tatuagem no braço: “Não confie no Marcos”. Você conhece três Marcos. O que faz?",
+        opcoes: [
+            "Evito todos os Marcos",
+            "Confio só na tatuagem, ela se deu ao trabalho",
+            "Descubro quem fez a tatuagem",
+            "Mudo meu nome para Marcos, assim ninguém sabe em quem confiar"
+        ],
+        certa: 3
+    },
+    {
+        texto: "O professor entrega a prova e diz que só tem uma pergunta: “Por quê?”. O que você escreve?",
+        opcoes: [
+            "“Porque sim”",
+            "Uma página inteira de filosofia",
+            "“Porque eu cheguei até aqui”",
+            "Entrego em branco com muita confiança"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você ganha uma ilha deserta, mas ela já tem um morador: um caranguejo que se acha o dono do lugar. O que você faz?",
+        opcoes: [
+            "Negocio o aluguel",
+            "Declaro guerra",
+            "Divido a ilha e crio uma fronteira",
+            "Aceito que moro de favor"
+        ],
+        certa: 0
     }
 ];
 
@@ -350,9 +549,12 @@ function resetarFinal() {
 // CÁLCULO
 // =========================
 
-// Cada acerto sobe um nível. O número da aura fica dentro da faixa do nível.
+// Cada acerto sobe um nível, de 1 a 10 (10 acertos = CHAD).
+// Com 0 ou 1 acerto o nível é 1. O número da aura fica dentro da faixa do nível.
 function auraDoQuiz() {
-    const aura = acertos * 10 + aleatorio(0.1, 9.9);
+    const nivel = Math.min(10, Math.max(1, acertos));
+    const base = (nivel - 1) * 10;
+    const aura = base + aleatorio(0.1, nivel === 10 ? 10 : 9.9);
     return Number(aura.toFixed(1));
 }
 
