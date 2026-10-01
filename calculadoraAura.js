@@ -3,7 +3,7 @@
 // =========================
 
 const DURACAO_SUSPENSE = 5000; // 5 segundos de carregamento
-const QTD_PERGUNTAS = 7;       // quantas perguntas saem em cada rodada
+const QTD_PERGUNTAS = 10;       // quantas perguntas saem em cada rodada
 const DELAY_PROXIMA = 450;     // pausa (ms) entre escolher uma opção e ir pra próxima
 
 // Banco de perguntas. "certa" é o índice da opção que sobe a aura (0=A, 1=B, 2=C, 3=D).
@@ -109,6 +109,106 @@ const perguntas = [
             "Sigo o pombo. Claramente ele sabe mais do que eu"
         ],
         certa: 2
+    },
+      {
+        texto: "Você está atrasado para uma reunião importante e o elevador está lotado. O que você faz?",
+        opcoes: [
+            "Subo de escada correndo e chego suado",
+            "Espero o próximo e chego atrasado com dignidade",
+            "Entro no elevador mesmo assim e mantenho contato visual com todo mundo",
+            "Mando mensagem dizendo que estou “quase chegando”"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Alguém te diz que você tem exatamente o mesmo rosto do vilão de um filme. O que você responde?",
+        opcoes: [
+            "“Que filme?” e fico ofendido",
+            "“Obrigado” e sigo a vida",
+            "Fico em silêncio e encaro até a pessoa se arrepender",
+            "Agradeço, o vilão é o melhor personagem"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Você descobre que existe uma versão sua de outro universo que é muito mais bem-sucedida. O que você faz?",
+        opcoes: [
+            "Tento entrar em contato para pedir dicas",
+            "Fico com inveja e passo a noite pensando nisso",
+            "Penso: “Ele que lute com os problemas dele, eu cuido dos meus”",
+            "Peço o número da conta bancária dele"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Seu celular cai na água, mas você consegue salvar só uma coisa: o celular ou a carteira. O que você escolhe?",
+        opcoes: [
+            "O celular, minha vida está lá dentro",
+            "A carteira, é mais prático",
+            "Nenhum dos dois. Já aceitei meu destino",
+            "Fico parado olhando enquanto os dois afundam"
+        ],
+        certa: 0
+    },
+    {
+        texto: "Você entra num elevador e todas as pessoas lá dentro viram para você ao mesmo tempo. O que você faz?",
+        opcoes: [
+            "Saio imediatamente",
+            "Pergunto “eu fiz alguma coisa?”",
+            "Aperto o botão do meu andar como se nada tivesse acontecido",
+            "Começo a me perguntar se eu sou o problema"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Você vê um grupo de pessoas brigando por causa de uma coxinha. O que você faz?",
+        opcoes: [
+            "Tento acalmar todo mundo",
+            "Pego a coxinha enquanto eles brigam",
+            "Gravo tudo e posto na internet",
+            "Fico assistindo de longe, com pipoca"
+        ],
+        certa: 1
+    },
+    {
+        texto: "Um robô te desafia para uma luta de vida ou morte, mas ele só sabe jogar pedra, papel e tesoura. O que você faz?",
+        opcoes: [
+            "Aceito e jogo pedra no primeiro round",
+            "Recuso, porque isso é tudo uma armadilha",
+            "Tento desligar o robô pela tomada",
+            "Jogo tesoura e tento parecer confiante"
+        ],
+        certa: 3
+    },
+    {
+        texto: "Você ganha uma viagem para qualquer lugar do mundo, mas precisa levar uma pessoa que você mal conhece. O que você faz?",
+        opcoes: [
+            "Aceito e torço para a pessoa ser legal",
+            "Recuso, prefiro economizar e viajar sozinho",
+            "Aceito e escolho o destino mais caro possível",
+            "Aceito e levo outra pessoa escondido na mala"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Você está jogando um jogo e perde para uma criança de 8 anos. O que você faz?",
+        opcoes: [
+            "Peço revanche imediatamente",
+            "Digo que o controle estava com defeito",
+            "Elogio a criança e aceito minha derrota com honra",
+            "Digo que estava deixando ela ganhar"
+        ],
+        certa: 2
+    },
+    {
+        texto: "Alguém te entrega um botão vermelho e diz: “Se apertar, algo aleatório vai acontecer”. O que você faz?",
+        opcoes: [
+            "Não aperto, vai que é algo ruim",
+            "Aperto na hora, a curiosidade venceu",
+            "Pergunto se o botão tem garantia",
+            "Peço para outra pessoa apertar primeiro"
+        ],
+        certa: 1
     }
 ];
 
