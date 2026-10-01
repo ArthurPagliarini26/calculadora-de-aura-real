@@ -15,7 +15,7 @@ const perguntas = [
         opcoes: [
             "Chamo os bombeiros e fico esperando",
             "Tento subir para salvar o gato e provavelmente viro a segunda vítima",
-            "Gravo um vídeo porque aparentemente isso é conteúdo",
+            "Gravo um vídeo rindo e posto no tiktok",
             "Vou embora. O gato chegou lá sozinho, ele que se vire"
         ],
         certa: 3
@@ -38,7 +38,7 @@ const perguntas = [
             "“Irmão, amanhã eu trabalho”",
             "Saio correndo e deixo o quarto para ele"
         ],
-        certa: 1
+        certa: 0
     },
     {
         texto: "Você encontra uma mochila abandonada no meio da rua. Dentro dela tem R$ 50 mil e um bilhete escrito: “Não pergunte de onde veio”. O que você faz?",
@@ -58,7 +58,7 @@ const perguntas = [
             "Gente que manda áudio de 7 minutos",
             "A própria humanidade. Resolvido de uma vez"
         ],
-        certa: 2
+        certa: 3
     },
     {
         texto: "Você está em um jantar e percebe que a pessoa ao seu lado está morta, mas ninguém mais percebeu. O que você faz?",
@@ -76,7 +76,7 @@ const perguntas = [
             "Dinheiro",
             "Poder ou influência",
             "Algo completamente absurdo só pela experiência",
-            "Nada. Já vi filmes suficientes para saber onde isso termina"
+            "Nada."
         ],
         certa: 3
     },
@@ -88,7 +88,7 @@ const perguntas = [
             "Grito “quem é você?” porque aparentemente sou protagonista de filme de terror",
             "Tiro uma foto. Se eu morrer, pelo menos deixo evidências"
         ],
-        certa: 3
+        certa: 1
     },
     {
         texto: "Você ganha o poder de saber exatamente quando qualquer pessoa vai morrer, mas não pode impedir. O que você faria?",
@@ -98,7 +98,7 @@ const perguntas = [
             "Ficaria paranoico tentando entender o que fazer com essa informação",
             "Usaria para descobrir quanto tempo ainda tenho antes de começar a me preocupar"
         ],
-        certa: 3
+        certa: 0
     },
     {
         texto: "Um pombo pousa na sua cabeça, olha diretamente nos seus olhos e fala: “Você tem 24 horas”. O que você faz?",
@@ -108,13 +108,13 @@ const perguntas = [
             "Aceito meu destino e vou comer alguma coisa boa",
             "Sigo o pombo. Claramente ele sabe mais do que eu"
         ],
-        certa: 2
+        certa: 3
     },
       {
         texto: "Você está atrasado para uma reunião importante e o elevador está lotado. O que você faz?",
         opcoes: [
             "Subo de escada correndo e chego suado",
-            "Espero o próximo e chego atrasado com dignidade",
+            "Espero o próximo e chego atrasado",
             "Entro no elevador mesmo assim e mantenho contato visual com todo mundo",
             "Mando mensagem dizendo que estou “quase chegando”"
         ],
@@ -138,7 +138,7 @@ const perguntas = [
             "Penso: “Ele que lute com os problemas dele, eu cuido dos meus”",
             "Peço o número da conta bancária dele"
         ],
-        certa: 2
+        certa: 3
     },
     {
         texto: "Seu celular cai na água, mas você consegue salvar só uma coisa: o celular ou a carteira. O que você escolhe?",
@@ -148,7 +148,7 @@ const perguntas = [
             "Nenhum dos dois. Já aceitei meu destino",
             "Fico parado olhando enquanto os dois afundam"
         ],
-        certa: 0
+        certa: 3
     },
     {
         texto: "Você entra num elevador e todas as pessoas lá dentro viram para você ao mesmo tempo. O que você faz?",
@@ -173,12 +173,12 @@ const perguntas = [
     {
         texto: "Um robô te desafia para uma luta de vida ou morte, mas ele só sabe jogar pedra, papel e tesoura. O que você faz?",
         opcoes: [
-            "Aceito e jogo pedra no primeiro round",
+            "Mato ele",
             "Recuso, porque isso é tudo uma armadilha",
             "Tento desligar o robô pela tomada",
             "Jogo tesoura e tento parecer confiante"
         ],
-        certa: 3
+        certa: 0
     },
     {
         texto: "Você ganha uma viagem para qualquer lugar do mundo, mas precisa levar uma pessoa que você mal conhece. O que você faz?",
@@ -188,7 +188,7 @@ const perguntas = [
             "Aceito e escolho o destino mais caro possível",
             "Aceito e levo outra pessoa escondido na mala"
         ],
-        certa: 2
+        certa: 3
     },
     {
         texto: "Você está jogando um jogo e perde para uma criança de 8 anos. O que você faz?",
@@ -198,13 +198,13 @@ const perguntas = [
             "Elogio a criança e aceito minha derrota com honra",
             "Digo que estava deixando ela ganhar"
         ],
-        certa: 2
+        certa: 3
     },
     {
         texto: "Alguém te entrega um botão vermelho e diz: “Se apertar, algo aleatório vai acontecer”. O que você faz?",
         opcoes: [
             "Não aperto, vai que é algo ruim",
-            "Aperto na hora, a curiosidade venceu",
+            "Aperto na hora",
             "Pergunto se o botão tem garantia",
             "Peço para outra pessoa apertar primeiro"
         ],
